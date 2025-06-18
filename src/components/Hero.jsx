@@ -89,15 +89,15 @@ export default function Hero() {
           <div className={`transition-all duration-700 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}>
-            <span className="inline-block text-lg md:text-xl text-purple-300 font-medium mb-2">
+            {/* <span className="inline-block text-lg md:text-xl  font-medium mb-2">
               👋 ¡Hola! Soy
-            </span>
+            </span> */}
           </div>
           
           <h1 className={`text-5xl md:text-7xl lg:text-8xl font-bold mb-6 transition-all duration-700 delay-500 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
           }`}>
-            <span className="bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent hover:from-purple-400 hover:via-blue-400 hover:to-cyan-400 transition-all duration-500">
+            <span className="bg-gradient-to-r from-white via-purple-10 to-blue-200 bg-clip-text text-transparent hover:from-purple-400 hover:via-blue-400 hover:to-cyan-400 transition-all duration-500">
               Jhon Alexander
             </span>
           </h1>
@@ -109,13 +109,13 @@ export default function Hero() {
         }`}>
           <div className="h-20 flex items-center justify-center">
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-light">
-              <span className="text-purple-400 font-medium">
+              <span className="text-black font-medium">
                 {roles[currentRole]}
               </span>
               <span className="ml-2 animate-pulse">|</span>
             </p>
           </div>
-          <p className="text-lg md:text-xl text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-black mt-4 max-w-2xl mx-auto leading-relaxed">
             Apasionado por crear experiencias digitales innovadoras que combinan 
             <span className="text-purple-300 font-medium"> inteligencia artificial</span> y 
             <span className="text-blue-300 font-medium"> desarrollo web moderno</span>
@@ -142,9 +142,9 @@ export default function Hero() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
         }`}>
           {[
-            { number: "50+", label: "Proyectos Completados" },
-            { number: "3+", label: "Años de Experiencia" },
-            { number: "100%", label: "Satisfacción del Cliente" }
+            { number: "5+", label: "Proyectos Completados" },
+            { number: "2+", label: "Años de Experiencia" },
+            { number: "80%", label: "Satisfacción del Cliente" }
           ].map((stat, index) => (
             <div key={index} className="text-center group hover:transform hover:scale-105 transition-all duration-300">
               <div className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors duration-300">
