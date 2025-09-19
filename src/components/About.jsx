@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState('story');
+  const [activeTab, setActiveTab] = useState('experience');
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -24,126 +24,142 @@ export default function About() {
 
   const tabs = [
     {
-      id: 'story',
-      label: 'Mi Historia',
-      icon: '📖'
+      id: 'experience',
+      label: 'Experiencia',
+      icon: 'briefcase'
     },
     {
-      id: 'passion',
-      label: 'Pasiones',
-      icon: '🚀'
+      id: 'expertise',
+      label: 'Expertise',
+      icon: 'code'
     },
     {
       id: 'approach',
-      label: 'Enfoque',
-      icon: '💡'
+      label: 'Metodología',
+      icon: 'target'
     }
   ];
 
   const tabContent = {
-    story: {
-      title: "Mi Viaje en el Desarrollo",
+    experience: {
+      title: "Trayectoria Profesional",
       content: [
-        "Comenzé mi aventura en el mundo de la programación impulsado por la curiosidad de entender cómo funcionan las cosas. Lo que empezó como un hobby se convirtió en una pasión que me lleva a explorar constantemente nuevas tecnologías.",
-        "Con más de 3 años de experiencia, he trabajado en proyectos que van desde aplicaciones web interactivas hasta sistemas de automatización con IA. Cada proyecto es una oportunidad para aprender algo nuevo y superar mis propios límites."
+        "Desarrollador Full Stack con más de 2 años de experiencia construyendo aplicaciones web escalables y sistemas backend robustos. He trabajado en equipos ágiles entregando soluciones de alta calidad que impactan directamente en los objetivos de negocio.",
+        "Mi experiencia abarca desde el desarrollo de APIs RESTful hasta la implementación de interfaces de usuario modernas, siempre enfocándome en las mejores prácticas de la industria y la optimización del rendimiento."
       ]
     },
-    passion: {
-      title: "Lo que me Motiva",
+    expertise: {
+      title: "Especialización Técnica",
       content: [
-        "La inteligencia artificial no es solo una tecnología para mí, es una herramienta para resolver problemas reales y crear experiencias que marquen la diferencia. Me fascina cómo podemos usar datos y algoritmos para hacer la vida más fácil.",
-        "El desarrollo web moderno me permite combinar creatividad y lógica. Disfruto creando interfaces que no solo se ven bien, sino que ofrecen experiencias memorables y funcionales para los usuarios."
+        "Especialista en el stack MERN/MEAN con profundo conocimiento en JavaScript/TypeScript, Python y tecnologías cloud. Mi experiencia incluye arquitectura de microservicios, integración de APIs y optimización de bases de datos.",
+        "Competente en metodologías DevOps, CI/CD, y herramientas de testing automatizado. Constantemente actualizado con las últimas tendencias y frameworks del ecosistema de desarrollo moderno."
       ]
     },
     approach: {
-      title: "Mi Filosofía de Trabajo",
+      title: "Metodología de Trabajo",
       content: [
-        "Creo en el código limpio, las buenas prácticas y la colaboración. Cada línea de código que escribo está pensada para ser mantenible, escalable y comprensible para otros desarrolladores.",
-        "Mi enfoque es centrado en el usuario: primero entiendo el problema, luego diseño la solución más elegante y eficiente. La tecnología debe servir a las personas, no al revés."
+        "Aplico metodologías ágiles (Scrum/Kanban) con enfoque en TDD y clean code. Priorizo la documentación clara, el code review riguroso y la colaboración efectiva en equipos multidisciplinarios.",
+        "Mi proceso incluye análisis de requerimientos detallado, diseño de arquitectura escalable, desarrollo iterativo y testing exhaustivo, garantizando entregas puntuales y de calidad empresarial."
       ]
     }
   };
 
   const skills = [
-    { name: 'JavaScript/TypeScript', level: 90, color: 'from-yellow-400 to-orange-500' },
-    { name: 'Python/Django', level: 85, color: 'from-green-400 to-blue-500' },
-    { name: 'React/Next.js', level: 88, color: 'from-blue-400 to-purple-500' },
-    { name: 'AI/Machine Learning', level: 75, color: 'from-purple-400 to-pink-500' },
-    { name: 'Node.js/APIs', level: 82, color: 'from-green-400 to-teal-500' },
-    { name: 'UI/UX Design', level: 78, color: 'from-pink-400 to-red-500' }
+    { name: 'JavaScript/TypeScript', level: 90, category: 'Frontend' },
+    { name: 'React/Next.js', level: 88, category: 'Frontend' },
+    { name: 'Node.js/Express', level: 85, category: 'Backend' },
+    { name: 'Python/Django', level: 82, category: 'Backend' },
+    { name: 'PostgreSQL/MongoDB', level: 80, category: 'Database' },
+    { name: 'AWS/Docker', level: 78, category: 'DevOps' }
   ];
 
-  const achievements = [
-    { icon: '🎯', title: 'Proyectos Exitosos', description: '50+ aplicaciones desarrolladas' },
-    { icon: '🤖', title: 'Especialización IA', description: 'Sistemas inteligentes implementados' },
-    { icon: '⚡', title: 'Optimización', description: 'Mejoras de rendimiento del 40%' },
-    { icon: '🌟', title: 'Satisfacción', description: '100% de clientes satisfechos' }
+  const certifications = [
+    { title: 'AWS Solutions Architect', status: 'En proceso', year: '2024' },
+    { title: 'React Advanced Patterns', status: 'Certificado', year: '2023' },
+    { title: 'Node.js Professional', status: 'Certificado', year: '2023' },
+    { title: 'Agile Development', status: 'Certificado', year: '2022' }
   ];
+
+  const getIconSVG = (iconName) => {
+    const icons = {
+      briefcase: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6z" />
+        </svg>
+      ),
+      code: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+      ),
+      target: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+        </svg>
+      )
+    };
+    return icons[iconName] || null;
+  };
 
   return (
     <section 
       id="about" 
       ref={sectionRef}
-      className="relative py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 overflow-hidden"
+      className="relative py-24 bg-black overflow-hidden"
     >
-      {/* Background decorative elements */}
+      {/* Minimal background elements */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-purple-200/30 rounded-full blur-2xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-200/30 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-purple-100/20 to-blue-100/20 rounded-full blur-3xl" />
+        <div className="absolute top-32 left-20 w-64 h-64 border border-gray-800/30 rounded-full" />
+        <div className="absolute bottom-32 right-20 w-48 h-48 border border-gray-700/20 rounded-full" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-6xl mx-auto px-6">
         {/* Section header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${
+        <div className={`text-center mb-20 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700 text-sm font-semibold rounded-full mb-4">
-            Conoce más sobre mí
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Sobre mí
-            </span>
+          <div className="inline-flex items-center px-4 py-2 bg-gray-900/50 border border-gray-700/50 text-gray-300 text-sm font-medium rounded-full mb-6">
+            Perfil Profesional
+          </div>
+          <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
+            Acerca de mí
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Desarrollador apasionado por crear soluciones innovadoras que combinan 
-            tecnología moderna con experiencias excepcionales
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-light">
+            Desarrollador especializado en tecnologías modernas con enfoque en soluciones escalables y código de calidad empresarial
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left column - Tabbed content */}
           <div className={`transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
           }`}>
             {/* Tab navigation */}
-            <div className="flex flex-wrap gap-2 mb-8 p-2 bg-white/50 backdrop-blur-sm rounded-2xl border border-gray-200/50">
+            <div className="flex gap-1 mb-8 p-1 bg-gray-900/50 backdrop-blur-sm rounded-lg border border-gray-700/50">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
+                  className={`flex items-center gap-3 px-4 py-3 rounded-md font-medium transition-all duration-300 flex-1 justify-center ${
                     activeTab === tab.id
-                      ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/25'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-white/80'
+                      ? 'bg-white text-black'
+                      : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
                   }`}
                 >
-                  <span className="text-lg">{tab.icon}</span>
+                  {getIconSVG(tab.icon)}
                   <span className="text-sm">{tab.label}</span>
                 </button>
               ))}
             </div>
 
             {/* Tab content */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <span className="text-2xl">{tabs.find(t => t.id === activeTab)?.icon}</span>
+            <div className="bg-gray-900/30 backdrop-blur-sm rounded-lg p-8 border border-gray-700/50">
+              <h3 className="text-2xl font-semibold text-white mb-6">
                 {tabContent[activeTab].title}
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {tabContent[activeTab].content.map((paragraph, index) => (
-                  <p key={index} className="text-gray-700 leading-relaxed">
+                  <p key={index} className="text-gray-300 leading-relaxed font-light">
                     {paragraph}
                   </p>
                 ))}
@@ -151,33 +167,40 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right column - Skills and achievements */}
+          {/* Right column - Skills and certifications */}
           <div className={`space-y-8 transition-all duration-1000 delay-500 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
           }`}>
             {/* Skills section */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <span className="text-2xl">⚡</span>
-                Habilidades Técnicas
+            <div className="bg-gray-900/30 backdrop-blur-sm rounded-lg p-8 border border-gray-700/50">
+              <h3 className="text-2xl font-semibold text-white mb-6 flex items-center gap-3">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+                Stack Tecnológico
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {skills.map((skill, index) => (
                   <div key={skill.name} className="group">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium text-gray-700 group-hover:text-gray-900 transition-colors duration-200">
-                        {skill.name}
-                      </span>
-                      <span className="text-sm text-gray-500 group-hover:text-purple-600 transition-colors duration-200">
+                    <div className="flex justify-between items-center mb-3">
+                      <div>
+                        <span className="font-medium text-white group-hover:text-gray-200 transition-colors duration-200">
+                          {skill.name}
+                        </span>
+                        <span className="ml-2 text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">
+                          {skill.category}
+                        </span>
+                      </div>
+                      <span className="text-sm text-gray-400 group-hover:text-white transition-colors duration-200">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-2 bg-gray-700/50 rounded-full overflow-hidden">
                       <div 
-                        className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000 ease-out group-hover:scale-105 origin-left`}
+                        className="h-full bg-gradient-to-r from-white to-gray-400 rounded-full transition-all duration-1000 ease-out"
                         style={{ 
                           width: isVisible ? `${skill.level}%` : '0%',
-                          transitionDelay: `${index * 100}ms`
+                          transitionDelay: `${index * 150}ms`
                         }}
                       />
                     </div>
@@ -186,28 +209,43 @@ export default function About() {
               </div>
             </div>
 
-            {/* Achievements section */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <span className="text-2xl">🏆</span>
-                Logros Destacados
+            {/* Certifications section */}
+            <div className="bg-gray-900/30 backdrop-blur-sm rounded-lg p-8 border border-gray-700/50">
+              <h3 className="text-2xl font-semibold text-white mb-6 flex items-center gap-3">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+                Certificaciones
               </h3>
-              <div className="grid grid-cols-2 gap-4">
-                {achievements.map((achievement, index) => (
+              <div className="space-y-4">
+                {certifications.map((cert, index) => (
                   <div 
-                    key={achievement.title}
-                    className="group p-4 rounded-xl bg-gradient-to-br from-white to-gray-50/50 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                    key={cert.title}
+                    className="flex items-center justify-between p-4 rounded-lg bg-gray-800/30 border border-gray-700/30 hover:border-gray-600/50 transition-all duration-300"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
-                    <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-200">
-                      {achievement.icon}
+                    <div>
+                      <h4 className="font-medium text-white mb-1">
+                        {cert.title}
+                      </h4>
+                      <div className="flex items-center gap-2">
+                        <span className={`px-2 py-1 text-xs rounded-full ${
+                          cert.status === 'Certificado' 
+                            ? 'bg-green-900/50 text-green-300 border border-green-700/50' 
+                            : 'bg-yellow-900/50 text-yellow-300 border border-yellow-700/50'
+                        }`}>
+                          {cert.status}
+                        </span>
+                        <span className="text-sm text-gray-500">
+                          {cert.year}
+                        </span>
+                      </div>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-1 group-hover:text-purple-700 transition-colors duration-200">
-                      {achievement.title}
-                    </h4>
-                    <p className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-200">
-                      {achievement.description}
-                    </p>
+                    {cert.status === 'Certificado' && (
+                      <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
                   </div>
                 ))}
               </div>
@@ -215,13 +253,23 @@ export default function About() {
           </div>
         </div>
 
-        {/* Call to action */}
-        <div className={`text-center mt-16 transition-all duration-1000 delay-700 ${
+        {/* Professional CTA */}
+        <div className={`text-center mt-20 transition-all duration-1000 delay-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <div className="inline-flex items-center gap-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 transition-all duration-300 cursor-pointer group">
-            <span>¿Listo para colaborar?</span>
-            <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4">
+            <button className="px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 flex items-center gap-3">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Descargar CV Completo
+            </button>
+            <button className="px-8 py-4 border-2 border-gray-600 text-gray-300 font-semibold rounded-lg hover:border-white hover:text-white transition-all duration-300 flex items-center gap-3">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              Programar Entrevista
+            </button>
           </div>
         </div>
       </div>

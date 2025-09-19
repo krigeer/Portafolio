@@ -1,192 +1,225 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
+  const [currentRole, setCurrentRole] = useState(0);
 
-  useEffect(() => {
-    setIsVisible(true);
-    
-    const handleMouseMove = (e) => {
+  const roles = [
+    "Full Stack Developer",
+    "Backend Developer", 
+    "Software Engineer",
+    "Frontend Developer",
+    "DevOps Engineer"
+  ];
+
+  // Optimized mouse tracking
+  const handleMouseMove = useCallback((e) => {
+    requestAnimationFrame(() => {
       setMousePosition({
         x: (e.clientX / window.innerWidth) * 100,
         y: (e.clientY / window.innerHeight) * 100
       });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    });
   }, []);
 
-  const roles = [
-    "Desarrollador Full Stack",
-    "Especialista en IA",
-    "Creador de Experiencias Web",
-    "Innovador Digital"
-  ];
-
-  const [currentRole, setCurrentRole] = useState(0);
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 200);
+    
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [handleMouseMove]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length);
-    }, 3000);
+    }, 3500);
+    
     return () => clearInterval(interval);
-  }, []);
+  }, [roles.length]);
+
+  const downloadCV = () => {
+    // Aquí irías la lógica para descargar el CV
+    console.log('Descargando CV...');
+  };
+
+  const scrollToContact = () => {
+    document.querySelector('#contact')?.scrollIntoView({ 
+      behavior: 'smooth' 
+    });
+  };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
-      {/* Dynamic background with multiple layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-950" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       
-      {/* Animated background shapes */}
-      <div className="absolute inset-0">
+  
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Minimal geometric patterns */}
         <div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"
+          className="absolute top-1/4 right-1/4 w-64 h-64 border border-gray-800/30 rounded-full"
           style={{
-            transform: `translate(${mousePosition.x * 0.1}px, ${mousePosition.y * 0.1}px)`
+            transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
           }}
         />
         <div 
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
+          className="absolute bottom-1/3 left-1/4 w-48 h-48 border border-gray-700/20 rounded-full"
           style={{
-            transform: `translate(${-mousePosition.x * 0.08}px, ${-mousePosition.y * 0.08}px)`,
-            animationDelay: '1s'
+            transform: `translate(${-mousePosition.x * 0.015}px, ${-mousePosition.y * 0.015}px)`
           }}
         />
-        <div 
-          className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"
-          style={{
-            transform: `translate(-50%, -50%) translate(${mousePosition.x * 0.05}px, ${mousePosition.y * 0.05}px)`,
-            animationDelay: '2s'
-          }}
-        />
+        
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/10 via-transparent to-gray-800/5" />
       </div>
 
-      {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(50)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
+            className="absolute w-1 h-1 bg-gray-600/40 rounded-full animate-float-slow"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${5 + Math.random() * 10}s`
+              animationDelay: `${Math.random() * 15}s`,
+              animationDuration: `${12 + Math.random() * 8}s`
             }}
           />
         ))}
       </div>
 
-      {/* Main content */}
-      <div className={`relative z-10 text-center px-6 max-w-5xl mx-auto transition-all duration-1000 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-      }`}>
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         
-        {/* Greeting with stagger animation */}
-        <div className="mb-8 space-y-4">
-          <div className={`transition-all duration-700 delay-300 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-          }`}>
-            {/* <span className="inline-block text-lg md:text-xl  font-medium mb-2">
-              👋 ¡Hola! Soy
-            </span> */}
+        <div className={`mb-12 transition-all duration-1200 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}>
+          
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-gray-900/50 border border-gray-700/50 backdrop-blur-sm mb-8">
+            <div className="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></div>
+            <span className="text-sm font-medium text-gray-300">Disponible para oportunidades laborales</span>
           </div>
           
-          <h1 className={`text-5xl md:text-7xl lg:text-8xl font-bold mb-6 transition-all duration-700 delay-500 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-          }`}>
-            <span className="bg-gradient-to-r from-white via-purple-10 to-blue-200 bg-clip-text text-transparent hover:from-purple-400 hover:via-blue-400 hover:to-cyan-400 transition-all duration-500">
-              Jhon Alexander
-            </span>
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight text-white">
+            Jhon Alexander
           </h1>
-        </div>
-
-        {/* Animated role description */}
-        <div className={`mb-12 transition-all duration-700 delay-700 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-        }`}>
-          <div className="h-20 flex items-center justify-center">
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-light">
-              <span className="text-black font-medium">
+          
+          <div className="relative h-20 flex items-center justify-center mb-6">
+            <h2 className="text-2xl md:text-4xl font-light text-gray-300 tracking-wide">
+              <span className="text-white font-normal">
                 {roles[currentRole]}
               </span>
-              <span className="ml-2 animate-pulse">|</span>
-            </p>
+              <span className="ml-2 text-gray-500 animate-pulse">|</span>
+            </h2>
           </div>
-          <p className="text-lg md:text-xl text-black mt-4 max-w-2xl mx-auto leading-relaxed">
-            Apasionado por crear experiencias digitales innovadoras que combinan 
-            <span className="text-purple-300 font-medium"> inteligencia artificial</span> y 
-            <span className="text-blue-300 font-medium"> desarrollo web moderno</span>
-          </p>
         </div>
 
-        {/* Call to action buttons */}
-        <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-700 delay-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+        <div className={`mb-16 transition-all duration-1200 delay-300 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
-          <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-full overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40">
-            <span className="relative z-10">Ver mis proyectos</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-blue-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+          <p className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed font-light mb-8">
+            Desarrollador de software con <span className="text-white font-medium">+2 años de experiencia</span> 
+            {' '}especializándome en tecnologías modernas como React, Node.js y Python. 
+            Apasionado por crear soluciones eficientes y escalables que generen impacto real en los negocios.
+          </p>
+          
+          {/* Key skills */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {['JavaScript', 'React', 'Node.js', 'Python', 'AWS', 'MongoDB'].map((skill, index) => (
+              <span 
+                key={skill}
+                className={`px-4 py-2 bg-gray-900/50 border border-gray-700/50 text-gray-300 rounded-lg text-sm font-medium transition-all duration-300 delay-${index * 100} hover:border-gray-500/50 hover:text-white ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className={`flex flex-col sm:flex-row gap-6 justify-center items-center mb-20 transition-all duration-1200 delay-600 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}>
+          <button 
+            onClick={downloadCV}
+            className="group relative px-8 py-4 bg-white text-black font-semibold rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl min-w-[220px] flex items-center justify-center"
+          >
+            <svg className="mr-3 w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Descargar CV
           </button>
           
-          <button className="group relative px-8 py-4 border-2 border-purple-400/50 text-purple-300 font-semibold rounded-full hover:border-purple-400 hover:text-white transition-all duration-300 hover:bg-purple-400/10">
-            <span className="relative z-10">Contactar</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 transform scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full"></div>
+          <button 
+            onClick={scrollToContact}
+            className="group relative px-8 py-4 border-2 border-gray-600 text-gray-300 font-semibold rounded-lg hover:border-white hover:text-white transition-all duration-300 min-w-[220px] flex items-center justify-center"
+          >
+            <svg className="mr-3 w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Contactar
           </button>
         </div>
 
-        {/* Social proof or stats */}
-        <div className={`mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-700 delay-1200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 transition-all duration-1200 delay-900 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           {[
-            { number: "5+", label: "Proyectos Completados" },
-            { number: "2+", label: "Años de Experiencia" },
-            { number: "80%", label: "Satisfacción del Cliente" }
-          ].map((stat, index) => (
-            <div key={index} className="text-center group hover:transform hover:scale-105 transition-all duration-300">
-              <div className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors duration-300">
-                {stat.number}
+            { number: "10+", label: "Proyectos Completados" },
+            { number: "2+", label: "Años Experiencia" },
+            { number: "95%", label: "Código Coverage" },
+            { number: "24h", label: "Tiempo Respuesta" }
+          ].map((metric, index) => (
+            <div key={index} className="group text-center p-6 border border-gray-800/50 rounded-lg hover:border-gray-600/50 hover:bg-gray-900/30 transition-all duration-300">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-gray-300 transition-colors duration-300">
+                {metric.number}
               </div>
-              <div className="text-gray-400 text-sm md:text-base group-hover:text-gray-300 transition-colors duration-300">
-                {stat.label}
+              <div className="text-gray-500 text-sm md:text-base font-medium tracking-wide uppercase">
+                {metric.label}
               </div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-700 delay-1500 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+      <div className={`absolute bottom-12 left-1/2 transform -translate-x-1/2 transition-all duration-1200 delay-1200 ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
-        <div className="flex flex-col items-center text-gray-400 hover:text-purple-300 transition-colors duration-300 cursor-pointer group">
-          <span className="text-sm mb-2 group-hover:text-white transition-colors duration-300">Scroll para explorar</span>
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center group-hover:border-purple-400 transition-colors duration-300">
-            <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce group-hover:bg-purple-400 transition-colors duration-300"></div>
+        <div className="flex flex-col items-center text-gray-600 hover:text-gray-400 transition-all duration-300 cursor-pointer group"
+             onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
+          <span className="text-xs mb-4 font-medium tracking-widest uppercase">
+            Ver más
+          </span>
+          <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center group-hover:border-gray-400 transition-all duration-300">
+            <div className="w-1 h-3 bg-gray-600 rounded-full mt-2 animate-bounce group-hover:bg-gray-400 transition-colors duration-300"></div>
           </div>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes float {
+        @keyframes float-slow {
           0%, 100% { 
-            transform: translate(0, 0) rotate(0deg); 
-            opacity: 0;
-          }
-          10%, 90% {
-            opacity: 1;
+            transform: translateY(0px); 
+            opacity: 0.2;
           }
           50% { 
-            transform: translate(-20px, -20px) rotate(180deg); 
-            opacity: 0.8;
+            transform: translateY(-15px); 
+            opacity: 0.6;
           }
         }
         
-        .animate-float {
-          animation: float 10s ease-in-out infinite;
+        .animate-float-slow {
+          animation: float-slow 15s ease-in-out infinite;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+          .animate-float-slow,
+          .animate-pulse,
+          .animate-bounce {
+            animation: none;
+          }
         }
       `}</style>
     </section>
