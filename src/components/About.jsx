@@ -74,10 +74,10 @@ export default function About() {
   ];
 
   const certifications = [
-    { title: 'AWS Solutions Architect', status: 'En proceso', year: '2024' },
-    { title: 'React Advanced Patterns', status: 'Certificado', year: '2023' },
-    { title: 'Node.js Professional', status: 'Certificado', year: '2023' },
-    { title: 'Agile Development', status: 'Certificado', year: '2022' }
+    { title: 'Analista y desarrollador de Software', status: 'En proceso', year: '2026' },
+    { title: "Oracle Cloud Infrastructure", status: 'En Certificado', year: '2025' },
+    { title: 'Scrum Master', status: 'Certificado', year: '2021' },
+    { title: 'Tecnico en Sitemas', status: 'Certificado', year: '2021' }
   ];
 
   const getIconSVG = (iconName) => {
@@ -209,7 +209,7 @@ export default function About() {
               </div>
             </div>
 
-            {/* Certifications section */}
+  
             <div className="bg-gray-900/30 backdrop-blur-sm rounded-lg p-8 border border-gray-700/50">
               <h3 className="text-2xl font-semibold text-white mb-6 flex items-center gap-3">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

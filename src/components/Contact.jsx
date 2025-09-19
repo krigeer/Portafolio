@@ -45,7 +45,7 @@ export default function Contact() {
 
     setIsSubmitting(true);
     
-    // Simular envío del formulario
+    
     await new Promise(resolve => setTimeout(resolve, 2000));
     
    
@@ -106,7 +106,7 @@ export default function Contact() {
     { label: 'Tiempo de respuesta', value: '< 24h' },
     { label: 'Disponibilidad', value: 'Inmediata' },
     { label: 'Modalidad', value: 'Remoto/Presencial' },
-    { label: 'Ubicación', value: 'Bogotá, Colombia' }
+    { label: 'Ubicación', value: 'Medellin, Colombia' }
   ];
 
   return (
